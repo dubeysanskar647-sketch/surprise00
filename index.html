@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surprise for Raveena ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+
+/* LOCK SCREEN */
+#lockScreen{
+position:fixed;
+width:100%;
+height:100vh;
+background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.lock-box{
+background:white;
+padding:30px;
+border-radius:20px;
+}
+
+.lock-box input{
+padding:10px;
+border-radius:10px;
+text-align:center;
+}
+
+.lock-box button{
+margin-top:10px;
+padding:10px 20px;
+border:none;
+background:#ff4d88;
+color:white;
+border-radius:20px;
+cursor:pointer;
+}
+
+/* BODY */
+
+body{
+margin:0;
+font-family:'Poppins', sans-serif;
+text-align:center;
+background: linear-gradient(135deg,#ffe6f0,#fff);
+}
+
+h1{
+font-family:'Dancing Script', cursive;
+font-size:55px;
+color:#ff4d88;
+}
+
+/* IMAGE */
+
+img{
+width:300px;
+border-radius:20px;
+transition:0.4s;
+}
+
+.caption{
+font-size:22px;
+color:#ff4d88;
+font-weight:bold;
+}
+
+/* MAILBOX */
+
+.mailbox{
+display:inline-block;
+width:120px;
+height:80px;
+background:#8b4513;
+margin:15px;
+border-radius:10px;
+cursor:pointer;
+position:relative;
+}
+
+.mailbox::after{
+content:"💌";
+font-size:35px;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+}
+
+/* POPUP */
+
+.surprise{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:25px;
+border-radius:20px;
+width:80%;
+max-width:400px;
+}
+
+.surprise.show{
+display:block;
+}
+
+.close{
+position:absolute;
+right:15px;
+top:10px;
+cursor:pointer;
+}
+
+/* GIFT BOX */
+
+.gift-box{
+width:120px;
+height:120px;
+background:linear-gradient(135deg,#ff4d88,#ff99cc);
+margin:20px auto;
+font-size:60px;
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:20px;
+cursor:pointer;
+transition:0.4s;
+}
+
+.gift-box:hover{
+transform:scale(1.1) rotate(5deg);
+}
+
+.gift-message{
+display:none;
+background:white;
+padding:25px;
+margin:20px auto;
+width:80%;
+max-width:400px;
+border-radius:20px;
+}
+
+/* HEARTS */
+
+.heart{
+position:fixed;
+color:#ff4d88;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+100%{transform:translateY(-100vh);}
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOCK SCREEN -->
+
+<div id="lockScreen">
+<div class="lock-box">
+<h2>💖 A Surprise For You 💖</h2>
+<input type="password" id="password" placeholder="Enter password">
+<br>
+<button onclick="unlock()">Unlock ❤️</button>
+<p id="error"></p>
+</div>
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div id="mainContent" style="display:none;">
+
+<h1>Happy Surprise, Raveena ❤️</h1>
+
+<p>
+Dear Raveena (Betu), You are my favourite notification 💖<br><br>
+I smiled a little more today… just because of you 😊
+</p>
+
+<img src="raveena.jpeg">
+<div class="caption">You are my today & all of my tomorrows ❤️</div>
+
+<p>Click anywhere for confetti 🎉</p>
+
+<div class="mailbox" onclick="showSurprise(1)"></div>
+<div class="mailbox" onclick="showSurprise(2)"></div>
+<div class="mailbox" onclick="showSurprise(3)"></div>
+
+<!-- 🎁 GIFT SECTION -->
+
+<h2 style="color:#ff4d88;">🎁 A Special Gift For You</h2>
+
+<div class="gift-box" onclick="openGift()">🎀</div>
+
+<div class="gift-message" id="giftMessage">
+<h3>💖 Surprise 💖</h3>
+<p>This is a small piece of my heart for you ❤️</p>
+<img src="raveena.jpeg" width="220">
+</div>
+
+<!-- POPUPS (YOUR SHAYARI KEPT SAME) -->
+
+<div class="surprise" id="surprise1">
+<span class="close" onclick="closeSurprise(1)">×</span>
+<h2>💌 सिर्फ तुम्हारे लिए</h2>
+<p>तुम जैसा तो कोई मुझे खास नहीं ❤️<br>फिर भी तुम्हें इस बात पर विश्वास नहीं 🥺<br>मुझसे बेहतर लड़का तो तुम्हें मिल जायेगा…<br>पर मेरी माँ से बेहतर सास नहीं 😌💖</p>
+</div>
+
+<div class="surprise" id="surprise2">
+<span class="close" onclick="closeSurprise(2)">×</span>
+
+<h2>🌙 तुम्हारी बातें</h2>
+
+<p style="font-size:20px; color:#ff4d88; font-weight:bold; line-height:1.8;">
+
+समुंदर की लहरे, टीम-टीमाते तारे, <br>
+मदहोश चाँदनी और चमकती रातें एक तरफ… ✨ <br><br>
+
+ये हसीन वादियाँ, सुनहरा आसमान, <br>
+पहली बरसात और तुम्हारी बातें एक तरफ ❤️
+
+</p>
+
+</div>
+>
+
+<div class="surprise" id="surprise3">
+<span class="close" onclick="closeSurprise(3)">×</span>
+
+<h2>❤️ मोहब्बत की गली</h2>
+
+<p style="font-size:20px; color:#ff4d88; font-weight:bold; line-height:1.8;">
+
+तुम्हारी हर मुस्कराहट का वास्ता मुझसे हो 😊 <br>
+सर्दी, गर्मी, बरसात हर मौसम का दस्ता मुझसे हो 🌦️ <br><br>
+
+और हुकूमत आपकी होने पर सिर आपके कदमों में होगा… 👑 <br>
+बस आपको मोहब्बत की गली का रास्ता मुझसे हो ❤️
+
+</p>
+
+</div>
+
+
+<canvas id="confetti"></canvas>
+
+<script>
+
+/* PASSWORD */
+
+function unlock(){
+let enteredPassword = document.getElementById("password").value;
+
+if(enteredPassword === "28022002"){
+document.getElementById("lockScreen").style.display="none";
+document.getElementById("mainContent").style.display="block";
+}
+else{
+document.getElementById("error").innerHTML="Wrong password 💔";
+}
+}
+
+/* POPUPS */
+
+function showSurprise(n){
+document.getElementById("surprise"+n).classList.add("show");
+}
+function closeSurprise(n){
+document.getElementById("surprise"+n).classList.remove("show");
+}
+
+/* GIFT */
+
+function openGift(){
+document.getElementById("giftMessage").style.display="block";
+}
+
+/* HEARTS */
+
+setInterval(()=>{
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+},500);
+
+</script>
+
+</body>
+</html>
